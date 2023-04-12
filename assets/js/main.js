@@ -4,32 +4,48 @@ formulario.addEventListener('submit', function(e) {
     e.preventDefault();
     let pesoImput = document.querySelector('#peso')
     let alturaImput = document.querySelector('#altura')
+    let impImput = document.querySelector('#imp')
 
     let peso = Number(pesoImput.value)
     let altura = Number(alturaImput.value)
+    let imp = Number(impImput.value)
 
     
 
-   
+    
 
 
-    const imc = getImc(peso, altura)
-    const percent = imc / altura
-    const msg = `Seu Lucro é RS: ${imc} <br /> ${percent.toFixed(3)} Porcento`
+    const imc = getImc(peso, altura, imp)
+    const percent = imc / altura * 100
+    const msg = `Seu Lucro é RS: ${imc} <br /> ${percent.toFixed(2)} Porcento`
 
     setResultado(msg, true)
 })
 
-function getImc(peso, altura){
+// function getImc(peso, altura){
+//     if(altura < 69.99) {
+//         let imposto = altura / 100 * 4
+//     let taxa = altura / 100 * 12
+//     const imc = altura - imposto - taxa - 5 - peso
+//     return imc.toFixed(2)
+//     } else {
+//         let imposto = altura / 100 * 4
+//     let taxa = altura / 100 * 12
+//     const imc = altura - imposto - taxa - 18.95 - peso
+//     return imc.toFixed(2)
+//     }
+// }
+
+function getImc(peso, altura, imp){
     if(altura < 69.99) {
-        let imposto = altura / 100 * 4
+        let imposto = altura / 100 * imp
     let taxa = altura / 100 * 12
-    const imc = altura - imposto - taxa - 5 - peso
+    const imc = altura - imposto - taxa - 5.5 - peso
     return imc.toFixed(2)
     } else {
-        let imposto = altura / 100 * 4
+        let imposto = altura / 100 * imp
     let taxa = altura / 100 * 12
-    const imc = altura - imposto - taxa - 18.95 - peso
+    const imc = altura - imposto - taxa - 20.60 - peso
     return imc.toFixed(2)
     }
 }
